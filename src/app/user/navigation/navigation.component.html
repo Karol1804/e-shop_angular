@@ -13,10 +13,10 @@
             <li ngbDropdown class="nav-item">
                 <a href (click)="false" class="nav-link" ngbDropdownToggle>Username</a>
                 <div ngbDropdownMenu>
-                    <button ngbDropdownItem>My Orders</button>
-                    <button ngbDropdownItem>Manage Orders</button>
-                    <button ngbDropdownItem>Manage Products</button>
-                    <button ngbDropdownItem>Log Out</button>
+                    <a ngbDropdownItem routerLink="my/orders">My Orders</a>
+                    <a ngbDropdownItem routerLink="admin/orders">Manage Orders</a>
+                    <a ngbDropdownItem routerLink="admin/products">Manage Products</a>
+                    <a ngbDropdownItem routerLink="/">Log Out</a>
                 </div>
             </li>
 
