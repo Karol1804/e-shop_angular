@@ -15,7 +15,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './user/login/login.component';
 
-import './firebase-init'
+import './firebase-initialization'
 
 @NgModule({
   declarations: [
