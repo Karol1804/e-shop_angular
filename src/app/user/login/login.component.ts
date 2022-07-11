@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithRedirect } from "firebase/auth";
 
+import { FirebaseOptions, getApp, initializeApp } from "firebase/app";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
