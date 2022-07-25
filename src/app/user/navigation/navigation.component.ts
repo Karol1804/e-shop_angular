@@ -16,10 +16,6 @@ export class NavigationComponent implements OnInit {
     this.logdedUser();
 
   }
-  // logOut(){
-  //   const auth = getAuth();
-  //   signOut(auth)
-  // }
     logOut() {
     const auth = getAuth();
     signOut(auth).then(() => {
@@ -33,18 +29,18 @@ export class NavigationComponent implements OnInit {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       this.user = user;
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const userr = user.displayName
-        console.log(userr)
+      // if (user) {
+      //   // User is signed in, see docs for a list of available properties
+      //   // https://firebase.google.com/docs/reference/js/firebase.User
+      //   const userr = user.displayName
+      //   console.log(userr)
         
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        console.log("Any user logded")
-      }
+      //   // ...
+      // } else {
+      //   // User is signed out
+      //   // ...
+      //   console.log("Any user logded")
+      // }
     });
   }
 

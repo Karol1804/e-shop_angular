@@ -3,7 +3,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithRedirect, signOut } from "firebase/auth";
 import { AuthService } from '../../services/auth.service'
 import { FirebaseOptions, getApp, initializeApp } from "firebase/app";
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +11,7 @@ import { FirebaseOptions, getApp, initializeApp } from "firebase/app";
 })
 export class LoginComponent {
 
-  constructor() {
+  constructor(public router: Router) {
 
 
   }
@@ -20,14 +20,10 @@ export class LoginComponent {
     const auth = getAuth();
     signInWithRedirect(auth, provider);
     console.log(auth.currentUser)
-    // const user = auth.currentUser;
-    // return user?.displayName;
   }
-    login(){
-      const auth = getAuth();
-      console.log(auth.currentUser)
-    }
-  
+  redirect() {
+    this.router.navigate(['home']);
+  }
 
 
 }
