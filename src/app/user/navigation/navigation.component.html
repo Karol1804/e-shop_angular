@@ -10,16 +10,16 @@
             <li class="nav-item active">
                 <a class="nav-link" routerLink="shopping-cart">Schopping Cart<span class="sr-only"></span></a>
             </li>
-            <li class="nav-item active">
+            <li *ngIf="!user"class="nav-item active">
                 <a class="nav-link" routerLink="login">Login<span class="sr-only"></span></a>
             </li>
-            <li ngbDropdown class="nav-item">
-                <a href (click)="false" class="nav-link" ngbDropdownToggle>Username</a>
+            <li *ngIf="user" ngbDropdown class="nav-item">
+                <a  href (click)="false" class="nav-link" ngbDropdownToggle>{{user.displayName}}</a>
                 <div ngbDropdownMenu>
                     <a ngbDropdownItem routerLink="my/orders">My Orders</a>
                     <a ngbDropdownItem routerLink="admin/orders">Manage Orders</a>
                     <a ngbDropdownItem routerLink="admin/products">Manage Products</a>
-                    <a ngbDropdownItem routerLink="/">Log Out</a>
+                    <a ngbDropdownItem routerLink="/" (click)="logOut()">Logout</a>
                 </div>
             </li>
 

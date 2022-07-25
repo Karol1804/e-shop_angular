@@ -11,7 +11,7 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { MyOrdersComponent } from './user/my-orders/my-orders.component';
 
 const routes: Routes = [
-  {path:'',component: HomeComponent},
+  {path:'home',component: HomeComponent},
   {path:'shopping-cart',component: ShoppingCartComponent},
   {path:'products',component: ProductsComponent},
   {path:'check-out',component: CheckOutComponent},

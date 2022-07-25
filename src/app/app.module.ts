@@ -16,6 +16,17 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './user/login/login.component';
 
 import './firebase-initialization'
+import {
+  initializeApp,
+  provideFirebaseApp
+} from '@angular/fire/app';
+import {AngularFireModule} from '@angular/fire/compat'
+import { environment } from 'src/environments/environment';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { getAuth,signOut } from "firebase/auth";
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
 
 @NgModule({
   declarations: [
@@ -30,14 +41,17 @@ import './firebase-initialization'
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-
+    AngularFireModule,
+    AngularFireAuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   ],
-  providers: [],
+  providers: [AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
