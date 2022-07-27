@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 // import { AuthGuardService } from './services/auth-guard.service';
 import { AuthGuard } from './guards/auth.guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
   
     // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   ],
-  providers: [AuthGuard,{provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig}],
+  providers: [AuthGuard,UserService,{provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

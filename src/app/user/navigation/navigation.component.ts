@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { getAuth,onAuthStateChanged,signOut } from "firebase/auth";
 // import { AuthService } from '../../services/auth.service'
 import { AuthService } from '../../services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'navigation',
@@ -12,7 +13,8 @@ import { AuthService } from '../../services/auth.service';
 export class NavigationComponent implements OnInit {
   public user:any;
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +30,11 @@ export class NavigationComponent implements OnInit {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       this.user = user;
-      // if (user) {
-      //   // User is signed in, see docs for a list of available properties
-      //   // https://firebase.google.com/docs/reference/js/firebase.User
-      //   const userr = user.displayName
-        // console.log(user?.emailVerified)
+      if (user) {
+        // console.log(user.displayName,user.email,user.uid)
+        this.userService.writeUserData(user.uid,user.displayName,user.email,)
+        
+        console.log(user?.emailVerified)
         
       //   // ...
       // } else {
@@ -40,7 +42,7 @@ export class NavigationComponent implements OnInit {
       //   // ...
       //   console.log("Any user logded")
       // }
-      
+      }
     }); 
   }
 
