@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { GoogleAuthProvider } from "firebase/auth";
 import { getAuth, signInWithRedirect, signOut } from "firebase/auth";
-import { AuthService } from '../../services/auth.service'
 import { FirebaseOptions, getApp, initializeApp } from "firebase/app";
 import { Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,19 +11,14 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent {
 
-  constructor(public router: Router) {
-
+  constructor(public router: Router,private authService: AuthService) {
 
   }
   loginUser() {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
-    signInWithRedirect(auth, provider);
-    console.log(auth.currentUser)
+  this.authService.login()
+ 
   }
-  redirect() {
-    this.router.navigate(['home']);
-  }
-
-
+  // redirect() {
+  //   this.router.navigate(['home']);
+  // }
 }

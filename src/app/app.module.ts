@@ -16,16 +16,19 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './user/login/login.component';
 
 import './firebase-initialization'
-import {
-  initializeApp,
-  provideFirebaseApp
-} from '@angular/fire/app';
+// import {
+//   initializeApp,
+//   provideFirebaseApp
+// } from '@angular/fire/app';
 import {AngularFireModule} from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { getAuth,signOut } from "firebase/auth";
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import { UserService } from './services/user.service';
+// import { getAuth,signOut } from "firebase/auth";
+// // import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import { AuthGuardService } from './services/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 
 @NgModule({
@@ -47,11 +50,11 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    AngularFireModule,
-    AngularFireAuthModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+  
+    // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   ],
-  providers: [AuthService,UserService],
+  providers: [AuthGuard,{provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

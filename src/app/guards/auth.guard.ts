@@ -8,9 +8,10 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
-  public user: any;
-  public isAuthenticated!: boolean;
+  // public user: any;
+  // public isAuthenticated!: boolean;
 
   constructor(
     private authService: AuthService,
@@ -18,33 +19,11 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    const auth = getAuth()
-    onAuthStateChanged(auth, (user) => {
-      this.user = user
-    })
-    console.log(this.user)
-
-    const isAuthenticated = this.user ? true : false;
-    console.log(isAuthenticated)
-    if (isAuthenticated) {
-      this.isAuthenticated = true;
+      console.log(this.authService.isLoggedIn)
+      if (this.authService.isLoggedIn !== true) {
+        window.alert('Access Denied, Login is Required to Access This Page!');
+        this.router.navigate(['login']);
+      }
+      return true;
     }
-
-    if (!isAuthenticated) {
-      this.isAuthenticated = false;
-      alert("You must be authenticated in order to acces this page")
-    }
-
-
-    console.log(this.isAuthenticated)
-    return this.isAuthenticated;
-
   }
-  //   var isAuthenticated = this.authService.getLogdedUser();
-  //   if (!isAuthenticated) {
-  //     this.router.navigate(['/login']);
-  //   }
-  //   return isAuthenticated;
-  // }
-}
